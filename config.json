@@ -1,0 +1,12 @@
+{
+  "RUN": {
+    "target": "http://localhost:4200/",
+    "browsers": [
+      "Chrome",
+      "Firefox"
+    ],
+    "tests": [
+      "SearchBoxTestSuite"
+    ]
+  }
+}

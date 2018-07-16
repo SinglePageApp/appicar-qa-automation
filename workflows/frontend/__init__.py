@@ -1,0 +1,1 @@
+from .SearchBoxTestSuite import SearchBoxTestSuite
