@@ -1,5 +1,6 @@
 import unittest
 import json
+from automation.reporting import Report
 
 
 if __name__ == "__main__":
@@ -7,12 +8,12 @@ if __name__ == "__main__":
     config = json.loads(open('config.json').read())
     browsers = config['RUN']['browsers']
     tests = config['RUN']['tests']
-    # Run tests from the defined test suite.
+    # Prepare the test suite.
     suite = unittest.TestSuite()
     module = __import__('workflows.frontend', fromlist=tests)
-
+    # Add the tests to the test suite.
     for browser in browsers:
         for test in tests:
             suite.addTest(eval('module.' + test)(browser_name=browser))
-
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    # Run tests from the defined test suite.
+    Report().run(suite)
