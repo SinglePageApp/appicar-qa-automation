@@ -1,4 +1,5 @@
 import unittest
+import allure
 import json
 from abc import ABC, abstractmethod
 from automation.browsers import Browser
@@ -18,6 +19,7 @@ class BaseTestSuite(ABC, unittest.TestCase):
         super(BaseTestSuite, self).__init__(methodName)
         self.browser_name = browser_name
 
+    @allure.step('Launch app')
     def setUp(self):
         """
         Initial configuration for the test.
@@ -32,6 +34,7 @@ class BaseTestSuite(ABC, unittest.TestCase):
         self.browser.get(config['RUN']['target'])
         print('Running test on ' + self.browser_name + ' browser.')
 
+    @allure.step('Close app')
     def tearDown(self):
         """
         Execute this code when the test is finished.

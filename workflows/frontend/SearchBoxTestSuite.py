@@ -1,36 +1,32 @@
+import allure
 from automation.unit import BaseTestSuite
+from workflows.frontend.components import SearchBoxComponent
 
 
+@allure.story('SearchBox Test Suite')
+@allure.issue('APQA-10')
+@allure.severity(allure.severity_level.CRITICAL)
 class SearchBoxTestSuite(BaseTestSuite):
     """
     SearchBox test suite.
     """
     ID = 'searchbox_tests'
 
+    @allure.testcase("Search by food")
     def test_search_by_food(self):
         """
         This test makes a search base on food criteria.
         """
-        # Get the search textbox.
-        search_field = self.browser.find_element_by_id('menuItemCategory')
-        search_field.clear()
-        # Enter search keyword and submit.
-        search_field.send_keys('pizza')
-        # Locate the search button and click it.
-        search_button = self.browser.find_element_by_xpath(
-            '/html/body/app-root/app-home-page/app-home-header/div/div/div/div[2]/app-searchbox/div/div/span[2]/button[2]'
-        )
-        search_button.click()
-        # get all the anchor elements which have store names displayed
-        # currently on result page using find_elements_by_xpath method
-        stores = self.browser.find_elements_by_class_name('w3l-home-stores-grid')
-        # get the number of anchor elements found
-        print('\n\nFound ' + str(len(stores)) + ' stores:')
-        # iterate through each anchor element and print the text that is # name of the store
-        for store in stores:
-            print('---------------------------------------------------------')
-            print(store.text)
-        print('---------------------------------------------------------')
+        self.searchbox = SearchBoxComponent(self.browser)
+        self.searchbox.fill_search_input()
+        self.searchbox.click_search_button()
+        self.searchbox.check_displayed_stores()
 
     def get_id(self):
+        """
+        Gets component's ID.
+
+        :returns: The component's ID.
+        :rtype: int
+        """
         return self.ID

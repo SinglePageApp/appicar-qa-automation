@@ -1,6 +1,5 @@
 import unittest
 import json
-from automation.reporting import Report
 
 
 if __name__ == "__main__":
@@ -16,4 +15,4 @@ if __name__ == "__main__":
         for test in tests:
             suite.addTest(eval('module.' + test)(browser_name=browser))
     # Run tests from the defined test suite.
-    Report().run(suite)
+    unittest.TextTestRunner(verbosity=2).run(suite)
