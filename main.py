@@ -1,19 +1,24 @@
-import unittest
 import json
-from automation.reporting import Report
+from subprocess import run
 
+
+CMD = [
+    'pytest',
+    './workflows/frontend/{}.py',
+    '--tb=long',
+    '--alluredir',
+    './results/reports/',
+    '--browser={}'
+]
 
 if __name__ == "__main__":
     # Get the tests to run from the config file.
     config = json.loads(open('config.json').read())
     browsers = config['RUN']['browsers']
-    tests = config['RUN']['tests']
-    # Prepare the test suite.
-    suite = unittest.TestSuite()
-    module = __import__('workflows.frontend', fromlist=tests)
-    # Add the tests to the test suite.
+    test_suites = config['RUN']['test-suites']['frontend']
+    # Run the test suites on the browsers defined in the configuration file.
     for browser in browsers:
-        for test in tests:
-            suite.addTest(eval('module.' + test)(browser_name=browser))
-    # Run tests from the defined test suite.
-    Report().run(suite)
+        for test_suite in test_suites:
+            CMD[1] = CMD[1].format(test_suite)
+            CMD[-1] = CMD[-1].format(browser)
+            run(CMD)

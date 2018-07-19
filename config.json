@@ -5,8 +5,11 @@
       "Chrome",
       "Firefox"
     ],
-    "tests": [
-      "SearchBoxTestSuite"
-    ]
+    "test-suites": {
+      "frontend": [
+        "SearchBoxTestSuite"
+      ],
+      "backend": []
+    }
   }
 }
