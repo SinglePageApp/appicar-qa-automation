@@ -1,1 +1,2 @@
 from .SearchBoxTestSuite import SearchBoxTestSuite
+from .LanguageTestSuite import LanguageTestSuite
