@@ -18,7 +18,8 @@ if __name__ == "__main__":
     test_suites = config['RUN']['test-suites']['frontend']
     # Run the test suites on the browsers defined in the configuration file.
     for browser in browsers:
+        cmd = CMD.copy()
+        cmd[-1] = cmd[-1].format(browser)
         for test_suite in test_suites:
-            CMD[1] = CMD[1].format(test_suite)
-            CMD[-1] = CMD[-1].format(browser)
-            run(CMD)
+            cmd[1] = cmd[1].format(test_suite)
+            run(cmd)
