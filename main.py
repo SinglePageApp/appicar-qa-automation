@@ -1,4 +1,4 @@
-import json
+from automation.data import CONFIG
 from subprocess import run
 
 
@@ -13,9 +13,8 @@ CMD = [
 
 if __name__ == "__main__":
     # Get the tests to run from the config file.
-    config = json.loads(open('config.json').read())
-    browsers = config['RUN']['browsers']
-    test_suites = config['RUN']['test-suites']['frontend']
+    browsers = CONFIG['RUN']['browsers']
+    test_suites = CONFIG['RUN']['test-suites']['frontend']
     # Run the test suites on the browsers defined in the configuration file.
     for browser in browsers:
         cmd = CMD.copy()
