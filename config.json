@@ -1,13 +1,12 @@
 {
   "RUN": {
-    "target": "http://localhost:4200/",
+    "target": "https://www.w3schools.com/html/html_forms.asp",
     "browsers": [
-      "Chrome",
-      "Firefox"
+      "Chrome"
     ],
     "test-suites": {
       "frontend": [
-        "SearchBoxTestSuite"
+        "FormTestSuite"
       ],
       "backend": []
     }

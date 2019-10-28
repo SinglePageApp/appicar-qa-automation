@@ -5,6 +5,8 @@ from subprocess import run
 CMD = [
     'pytest',
     './workflows/frontend/{}.py',
+    '-s',
+    '--capture=no',
     '--tb=long',
     '--alluredir',
     './results/reports/',

@@ -1,1 +1,2 @@
 from .SearchBoxComponent import SearchBoxComponent
+from .FormComponent import FormComponent
